@@ -7,8 +7,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+    implements DataEntryDialog.DataEntryListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showCustomDialog() {
-        DataEntryDialog dialog = new DataEntryDialog();
+        Person p = new Person("Micky","Mouse",35);
+
+        DataEntryDialog dialog = DataEntryDialog.newInstance(p);
         dialog.show(getSupportFragmentManager(), "CUSTOM_DIALOG_FRAGMENT");
     }
 
@@ -58,5 +62,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDataEntryCOmplete(Person person) {
+        Toast.makeText(this, " " +person.getFirstName() +
+                " " + person.getLastName() + ", age: " + person.getAge(), Toast.LENGTH_LONG)
+                .show();
+
     }
 }
