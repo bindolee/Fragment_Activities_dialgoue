@@ -1,9 +1,7 @@
 package sbin.com.fragmentdialog;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -29,16 +27,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-        alertDialog.setTitle("Alert");
-        alertDialog.setMessage("Here's some important information!");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
+        AlertDialogFragment dialogFragment = new AlertDialogFragment();
+        dialogFragment.setCancelable(false);
+        dialogFragment.show(getSupportFragmentManager(), "DIALOG_FRAGMENT");
+
     }
 
     @Override
