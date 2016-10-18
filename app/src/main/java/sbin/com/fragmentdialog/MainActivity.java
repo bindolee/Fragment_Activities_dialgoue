@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog();
+                showCustomDialog();
             }
         });
     }
@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         dialogFragment.setCancelable(false);
         dialogFragment.show(getSupportFragmentManager(), "DIALOG_FRAGMENT");
 
+    }
+
+    private void showCustomDialog() {
+        DataEntryDialog dialog = new DataEntryDialog();
+        dialog.show(getSupportFragmentManager(), "CUSTOM_DIALOG_FRAGMENT");
     }
 
     @Override
